@@ -1,4 +1,4 @@
-# DBMS Project for Group 2: Configuration Management System
+# DBMS Project for Group 2: Gallery Database System
 
 
 ## Members:
