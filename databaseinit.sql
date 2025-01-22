@@ -4,7 +4,7 @@ USE GalleryDB;
 
 CREATE TABLE Artist (
     ArtistID INT PRIMARY KEY,
-    ArtistName VARCHAR(255),
+    ArtistName VARCHAR(255) UNIQUE,
     Birthplace VARCHAR(255),
     Style VARCHAR(255),
     Age INT
@@ -13,7 +13,7 @@ CREATE TABLE Artist (
 CREATE TABLE Artwork (
     ArtworkID INT PRIMARY KEY,
     ArtworkYear INT,
-    Title VARCHAR(255),
+    Title VARCHAR(255) UNIQUE,
     Type VARCHAR(255),
     Price DECIMAL(10, 2),
     ImagePath VARCHAR(255),
@@ -28,7 +28,7 @@ CREATE TABLE ArtGroup (
 
 CREATE TABLE Customer (
     CustomerID INT PRIMARY KEY,
-    CustomerName VARCHAR(255),
+    CustomerName VARCHAR(255) UNIQUE,
     Address VARCHAR(255),
     TotalSpending DECIMAL(10, 2)
 );
