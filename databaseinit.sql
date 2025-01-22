@@ -29,6 +29,8 @@ CREATE TABLE ArtGroup (
 CREATE TABLE Customer (
     CustomerID INT PRIMARY KEY,
     CustomerName VARCHAR(255) UNIQUE,
+    Username VARCHAR(255) UNIQUE,
+    Password VARCHAR(255),
     Address VARCHAR(255),
     TotalSpending DECIMAL(10, 2)
 );
