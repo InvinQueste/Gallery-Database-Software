@@ -1,0 +1,547 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  
+    background: url(bg3.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.login-form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+
+.container{
+    width: 1200px;
+    background: transparent;
+    margin: 100px auto;
+    border: 2px solid rgba(255, 255, 255, .2);
+    color: white;
+    border-radius: 12px;
+    padding: 30px 40px;
+    backdrop-filter: blur(10px);
+}
+
+.small-container{
+    width: 420px;
+    background:transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    color: white;
+    border-radius: 12px;
+    padding: 30px 40px;
+    backdrop-filter: blur(10px);
+}
+
+select {
+    width: 100%;
+    height: 17%;
+    background: transparent;
+    position: relative;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 15px;
+    color: white;
+    padding: 20px 45px 20px 32px;
+}
+
+option {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    position: relative;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 15px;
+    color: rgb(4, 0, 0);
+    padding: 20px 45px 20px 32px;
+}
+
+.index-name{
+    font-size: 50px;
+    text-align: center;
+    margin: 20px 0;
+    font-family: "Bokor", system-ui;
+    color:rgb(20, 44, 0);
+}
+
+.form-title{
+    font-size: 36px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+input{
+    color:inherit;
+    width:100%;
+    background-color:transparent;
+    border:none;
+    border-bottom:1px solid #757575;
+    padding-left:1rem;
+    font-size:15px;
+    position: relative;
+}
+
+.input-group{
+    width: 100%;
+    height: 17%;
+    background: transparent;
+    position: relative;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: white;
+    padding: 20px 45px 20px 20px;
+}
+input::placeholder{
+    color:white;
+    position: relative;
+}
+.input-group i{
+    position:absolute;
+    right: 20px;
+    top: 30%;
+    transform: translate(-50%);
+    font-size: 20px;
+}
+
+.btn{
+    width: 100%;
+    height: 45px;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+.table-btn{
+    width: 100%; /* Keeps the button filling the cell's width */
+    height: 25px; /* Button height */
+    background: white; /* Button background */
+    border: none;
+    outline: none;
+    border-radius: 5px; /* Reduced border radius for a more rectangular look */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for aesthetics */
+    cursor: pointer; /* Indicates the button is clickable */
+    font-size: 16px; /* Font size for text */
+    color: #333; /* Text color */
+    font-weight: 600; /* Bold text */
+    margin-bottom: 10px; /* Adds vertical spacing between buttons */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Last button in the cell should have no margin */
+td .table-btn:last-child {
+    margin-bottom: 0;
+}
+
+/* Hover effect */
+.table-btn:hover {
+    background: #333; /* Darker background */
+    color: white; /* White text */
+}
+
+.c404btn{
+    width: 17%;
+    height: 45px;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    text-align: center;
+    align-content: center;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    font-family: Arial, sans-serif;
+}
+
+
+.dropdown-trigger {
+    background-color: #4CAF50; 
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    width: 100%; 
+}
+
+.dropdown-content {
+    display: none; 
+    position: absolute;
+    background-color: #f9f9f9; 
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    color: #333; 
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropdown-trigger {
+    background-color: #3e8e41;
+}
+
+a {
+    text-decoration: none;
+}
+
+.divider {
+    width: 1px;
+    height: 40px; /* Adjust height as needed */
+    background-color: white;
+    margin: 0 15px; /* Space between buttons and the divider */
+    align-self: center; /* Center vertically within the navbar */
+}
+
+.card {
+    width: 190px;
+    height: 254px;
+    background-image: linear-gradient(144deg,#114c00, #5a8e06 60%,#93edd2);
+    border: none;
+    border-radius: 10px;
+    position: relative;
+    top: 20px;
+    font-family: inherit;
+  }
+  
+  .card span {
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    display: block;
+    padding-top: 10px;
+    font-size: 1.3em;
+  }
+  
+  .card .job {
+    font-weight: 400;
+    color: white;
+    display: block;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 1em;
+  }
+  
+  .card .img {
+    display: flex;
+    justify-content: center; 
+    margin-top: 15px; 
+}
+
+.card .img .profile-pic {
+    width: 100px; 
+    height: 100px;
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid #ddd;
+}
+  
+  .card button {
+    padding: 8px 25px;
+    display: block;
+    margin: auto;
+    border-radius: 8px;
+    border: none;
+    margin-top: 15px;
+    background: #e8e8e8;
+    color: #111111;
+    font-weight: 600;
+  }
+  
+  .card button:hover {
+    background: #212121;
+    color: #ffffff;
+  }
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #003212; /* Dark background */
+    padding: 10px 20px; /* Top and side padding */
+    color: rgb(86, 255, 115); /* Text color */
+}
+
+.navbar .logo {
+    font-optical-sizing: auto;
+    font-family: "Bokor", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: x-large;
+}
+
+.navbar .logo a {
+    all: unset;
+    display: inline-block;
+    text-decoration: none !important; 
+    color: rgb(86, 255, 115) !important;
+    font-family: "Bokor", system-ui !important;
+    font-weight: 400 !important;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+.navbar .nav-buttons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    align-items: center;
+}
+
+.navbar .nav-buttons button {
+    background-color: #38ffb9; /* Button background */
+    color: rgb(20, 44, 0);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.navbar .user-info {
+    display: flex;
+    flex-direction: column; /* Arrange content vertically */
+    align-items: center; /* Center-align the text and button */
+    gap: 5px; /* Add space between the text and button */
+    color: white; /* Ensure the text is white */
+}
+
+.navbar .user-info span {
+    font-size: 0.9rem; /* Smaller font for "Signed in as" */
+}
+
+.navbar .logout-button {
+    background-color: #38ffb9; /* Match role-specific button color */
+    color: rgb(20, 44, 0);
+    border: none;
+    padding: 5px 10px; /* Smaller button size */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem; /* Adjust font size for smaller button */
+}
+
+.navbar .logout-button:hover {
+    background-color: #35520d; /* Darker shade on hover */
+}
+
+.navbar .nav-buttons button:hover {
+    background-color: #35520d; /* Darker shade on hover */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: transparent;
+    color: white;
+}
+
+tr {
+    background: transparent;
+    color: white;
+}
+
+tr:hover {
+    background: transparent;
+    color: yellowgreen;
+}
+
+.big-card {
+    width: 50%;
+    max-width: 1200px;
+    margin: 20px auto;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 20px 30px;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-header .profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    margin-right: 20px;
+}
+
+.card-header .user-info h1 {
+    font-size: 2rem;
+    margin: 0;
+    color: rgb(86, 255, 115);
+}
+
+.card-header .user-info p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.card-body p {
+    margin: 0;
+}
+
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    grid-gap: 20px; /* Space between items */
+    max-width: 900px; /* Optional: adjust width of the container */
+    margin: 0 auto; /* Center the container */
+}
+
+/* Ensure labels align properly */
+.form-container label {
+    font-size: 16px;
+    color: white;
+    display: inline-block;
+    margin-right: 10px;
+    text-align: center; /* Centers text inside the label */
+    width: 100%; /* Make the label take up full width */
+    margin-bottom: 5px; /* Optional: space between label and select */
+    display: flex;
+    justify-content: center; /* Centers the label text */
+    align-items: center; /* Vertically centers text */
+}
+
+/* Scoped style for the select dropdowns inside .form-container */
+.form-container select,
+.form-container input[type="date"],
+.form-container input[type="text"] {
+    width: 100%; /* Makes select span the full width of its container */
+    height: 35px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 15px;
+    color: white;
+    padding: 5px 45px 5px 32px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 25px;
+    margin-bottom: 10px;
+}
+
+/* Option styles scoped within .form-container */
+.form-container option {
+    background: transparent;
+    border: none;
+    font-size: 15px;
+    color: rgb(4, 0, 0);
+    padding: 5px 0;
+    text-align: center;
+}
+
+/* Flexbox styling for form group inside .form-container */
+.form-container .form-group {
+    display: flex;
+    flex-direction: column; /* Stack label and input/select vertically */
+    align-items: flex-start; /* Align label and input/select to the left */
+    justify-content: flex-start;
+}
+
+/* Styling for the submit button container */
+.form-container .submit-group {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+    grid-column: span 2; /* Make the submit button span both columns if needed */
+}
+
+/* Styling for the submit button */
+.report-btn {
+    background-color: #4CAF50; /* Green background color */
+    color: white; /* White text color */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 40px; /* Round edges */
+    cursor: pointer;
+    text-align: center;
+    width: 25%;
+}
+
+/* Hover effect for submit button */
+.report-btn:hover {
+    background-color: yellowgreen; /* Darker green when hovered */
+}
