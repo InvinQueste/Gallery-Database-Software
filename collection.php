@@ -12,22 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['search'])) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['buy'])) {
     $username = $_SESSION['username']; // Assuming username is stored in session
     $artworkID = $_POST['artworkID']; // Artwork ID to be bought
-
-    // Fetch customerID from customer table based on session username
-    $customerQuery = $conn->query("SELECT CustomerID FROM Customer WHERE Username = '$username'");
-    if ($customerQuery && $customerQuery->num_rows > 0) {
-        $customer = $customerQuery->fetch_assoc();
-        $customerID = $customer['customerID'];
-
-        // Insert into Buys table
-        $insertBuyQuery = "INSERT INTO Buys (CustomerID, ArtworkID) VALUES ('$customerID', '$artworkID')";
-        if ($conn->query($insertBuyQuery)) {
-            echo "Item added to your cart successfully!";
-        } else {
-            echo "Error: " . $conn->error;
-        }
+    $customerID = $_SESSION['id'];
+    // Insert into Buys table
+    $insertBuyQuery = "INSERT INTO Buys (CustomerID, ArtworkID) VALUES ('$customerID', '$artworkID')";
+    if ($conn->query($insertBuyQuery)) {
+        header("Location: collection.php");
+        exit;
     } else {
-        echo "Customer not found.";
+        echo "Error: " . $conn->error;
     }
 }
 
@@ -44,7 +36,7 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products Page</title>
+    <title>ArtBase Collection</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -144,7 +136,7 @@ $result = $conn->query($sql);
 </head>
 <body>
     <div class="container">
-        <h1>Products</h1>
+        <h1>Collection</h1>
         <form method="GET" action="" class="search-bar">
             <input type="text" name="search" placeholder="Search products..." value="<?php echo htmlspecialchars($searchQuery); ?>">
             <button type="submit">Search</button>
