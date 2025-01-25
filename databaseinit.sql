@@ -45,7 +45,7 @@ CREATE TABLE Belongs (
 CREATE TABLE Buys (
     ArtworkID INT,
     CustomerID INT,
-    TransactionTime TIMESTAMP NULL DEFAULT NULL
+    TransactionTime TIMESTAMP NOT NULL DEFAULT current_timestamp(),
     PRIMARY KEY (ArtworkID, CustomerID),
     FOREIGN KEY (ArtworkID) REFERENCES Artwork(ArtworkID),
     FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
