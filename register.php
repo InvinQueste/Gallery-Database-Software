@@ -12,27 +12,28 @@ if (isset($_POST['signIn'])) {
 
 
 
-    $sql = "SELECT * FROM customer WHERE Username='$email' and Password='$password'";
+    $sql = "SELECT * FROM Customer WHERE Username='$email' and Password='$password'";
     $result = $conn->query($sql);
-    if ($loginType === 'customer'){
-    if ($result->num_rows > 0) {
-        session_start();
-        $row = $result->fetch_assoc();
-        // $_SESSION['username'] = $row['username'];
-       // $_SESSION['role'] = $row['role'];
-        echo "Successfull as customer";
-        exit();
-    } else {
+    if ($loginType === 'customer') {
+        if ($result->num_rows > 0) {
+            session_start();
+            $row = $result->fetch_assoc();
+            $_SESSION['username'] = $row['Username'];
+            $_SESSION['id'] = $row['CustomerID'];
+            echo "Successful as customer";
+            exit();
+        } else {
+        }
     }
-}
-elseif ($loginType === 'admin') {
-    if ($email === 'admin' && $password === 'adminpass') {
-        echo "Login Successful as Admin";
-        exit();
-} else {  
-}
-}
-else{}
+    elseif ($loginType === 'admin') {
+        if ($email === 'admin' && $password === 'adminpass') {
+            echo "Login Successful as Admin";
+            exit();
+        } else {  
+        }
+    }
+    else{
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
