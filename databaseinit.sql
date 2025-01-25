@@ -45,6 +45,7 @@ CREATE TABLE Belongs (
 CREATE TABLE Buys (
     ArtworkID INT,
     CustomerID INT,
+    TransactionTime TIMESTAMP NULL DEFAULT NULL
     PRIMARY KEY (ArtworkID, CustomerID),
     FOREIGN KEY (ArtworkID) REFERENCES Artwork(ArtworkID),
     FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
@@ -167,23 +168,3 @@ INSERT INTO Customer (CustomerID, CustomerName, Username, Password, Address) VAL
 (1010, 'Jane Frown', 'cust10', 'cust10pass', 'Toronto'),
 (1011, 'Julia Martin', 'cust11', 'cust11pass', 'Paris'),
 (1012, 'Ian Clark', 'cust12', 'cust12pass', 'Kolkata');
-
-INSERT INTO Buys (ArtworkID, CustomerID) VALUES 
-(3009, 1001),
-(3025, 1001),
-(3016, 1003),
-(3020, 1003);
-
-/*
-INSERT INTO PrefersArtist (CustomerID, ArtistID) VALUES 
-(1009, 3001),
-(1025, 3001),
-(1016, 3003),
-(1020, 3003);
-
-INSERT INTO PrefersGroup (CustomerID, GroupID) VALUES 
-(1009, 4001),
-(1025, 4001),
-(1016, 4003),
-(1020, 4003);
-*/
