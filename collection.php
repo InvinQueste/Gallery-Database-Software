@@ -37,6 +37,10 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ArtBase Collection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bokor&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -48,91 +52,8 @@ $result = $conn->query($sql);
             min-height: 100vh;
             background: #f5f5f5;
         }
-        .container {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 20px;
-            width: 80%;
-            max-width: 1200px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 40px;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        .search-bar {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-        .search-bar input[type="text"] {
-            padding: 10px;
-            font-size: 16px;
-            border: 2px solid rgb(0, 0, 0);
-            border-radius: 5px;
-            width: 60%;
-        }
-        .search-bar button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            background: rgba(25, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
-            cursor: pointer;
-            color: #333;
-        }
-        .search-bar button:hover {
-            background: rgba(255, 255, 255, 0.4);
-        }
-        .product-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            justify-content: center;
-            gap: 30px;
-        }
-        .product {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
-        .product h3 {
-            margin: 10px 0;
-            color: #333;
-            flex-grow: 1;
-        }
-        .product .price-year {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 10px;
-        }
-        .product .add-to-cart {
-            position: relative;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
-            align-self: flex-end;
-        }
-        .product .add-to-cart:hover {
-            background-color: #45a049;
-        }
     </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
