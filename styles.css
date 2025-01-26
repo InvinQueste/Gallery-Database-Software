@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Bokor&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arial:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;700&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -21,7 +25,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: relative;
+    position: relative; 
 }
 
 .small-container{
@@ -77,14 +81,19 @@ option {
 }
 
 input{
-    color:inherit;
-    width:100%;
-    background-color:transparent;
-    border:none;
-    border-bottom:1px solid #757575;
-    padding-left:1rem;
-    font-size:15px;
+    color: inherit;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #757575;
+    padding-left: 1rem;
+    font-size: 15px;
     position: relative;
+
+    &::placeholder{
+        color: white;
+        position: relative;
+    }
 }
 
 .input-group{
@@ -99,19 +108,14 @@ input{
     font-size: 16px;
     color: white;
     padding: 20px 45px 20px 20px;
-}
 
-input::placeholder{
-    color:white;
-    position: relative;
-}
-
-.input-group i{
-    position:absolute;
-    right: 20px;
-    top: 30%;
-    transform: translate(-50%);
-    font-size: 20px;
+    i{
+        position: absolute;
+        right: 20px;
+        top: 30%;
+        transform: translate(-50%);
+        font-size: 20px;
+    }
 }
 
 .btn{
@@ -142,22 +146,33 @@ input::placeholder{
     font-weight: 600;
     margin-bottom: 10px;
     transition: background-color 0.3s ease, color 0.3s ease;
+
+    :hover{
+        background: #333;
+        color: white;
+    }
 }
 
 td .table-btn:last-child {
     margin-bottom: 0;
 }
 
-.table-btn:hover {
-    background: #333;
-    color: white;
-}
-
 .dropdown {
     position: relative;
     display: inline-block;
     font-family: Arial, sans-serif;
+
+    &:hover {
+        .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-trigger {
+            background-color: #3e8e41;
+        }
+    }
 }
+
 
 .dropdown-trigger {
     background-color: #4CAF50;
@@ -180,27 +195,19 @@ td .table-btn:last-child {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 5px;
-}
 
-.dropdown-content a {
-    color: black;
-    padding: 10px 15px;
-    text-decoration: none;
-    display: block;
-    font-size: 14px;
-}
+    a {
+        color: black;
+        padding: 10px 15px;
+        text-decoration: none;
+        display: block;
+        font-size: 14px;
 
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
-    color: #333;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown:hover .dropdown-trigger {
-    background-color: #3e8e41;
+        &:hover {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+    }
 }
 
 a {
@@ -227,11 +234,10 @@ th {
 tr {
     background: transparent;
     color: white;
-}
-
-tr:hover {
-    background: transparent;
-    color: yellowgreen;
+    &:hover{
+        background: transparent;
+        color: yellowgreen;
+    }
 }
 
 .container {
@@ -253,35 +259,39 @@ h1 {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+
+    input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid rgb(0, 0, 0);
+        border-radius: 5px;
+        width: 60%;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        background: rgba(25, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
+        cursor: pointer;
+        color: #333;
+
+        &:hover{
+            background: rgba(255, 255, 255, 0.4);
+        }
+    }
 }
-.search-bar input[type="text"] {
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid rgb(0, 0, 0);
-    border-radius: 5px;
-    width: 60%;
-}
-.search-bar button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    background: rgba(25, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
-    cursor: pointer;
-    color: #333;
-}
-.search-bar button:hover {
-    background: rgba(255, 255, 255, 0.4);
-}
+
 .product-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, 260px);
     justify-content: center;
     gap: 30px;
 }
+
 .product {
-    /*background: rgba(255, 255, 255, 0.9);*/
     background: transparent;
     backdrop-filter: blur(10px);
     border-radius: 10px;
@@ -292,30 +302,34 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-}
-.product h3 {
-    margin: 10px 0;
-    color: #333;
-    flex-grow: 1;
-}
-.product .price-year {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 10px;
-}
-.product .add-to-cart {
-    position: relative;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    align-self: flex-end;
-}
-.product .add-to-cart:hover {
-    background-color: #45a049;
+    
+    .h3 {
+        margin: 10px 0;
+        color: #333;
+        flex-grow: 1;
+    }
+
+    .price-year {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 10px;
+    }
+
+    .add-to-cart {
+        position: relative;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        align-self: flex-end;
+
+        &:hover{
+            background-color: #45a049;
+        }
+    }
 }
