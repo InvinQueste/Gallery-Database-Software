@@ -20,14 +20,14 @@ if (isset($_POST['signIn'])) {
             $row = $result->fetch_assoc();
             $_SESSION['username'] = $row['Username'];
             $_SESSION['id'] = $row['CustomerID'];
-            echo "Successful as customer";
+            header("Location: logout.php");
             exit();
         } else {
         }
     }
     elseif ($loginType === 'admin') {
         if ($email === 'admin' && $password === 'adminpass') {
-            echo "Login Successful as Admin";
+            header("Location: logout.php");
             exit();
         } else {  
         }

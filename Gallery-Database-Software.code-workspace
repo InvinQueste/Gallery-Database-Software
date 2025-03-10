@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"name": "Gallery-Database-Software",
+			"path": "."
+		},
+		{
+			"path": "../Configuration_Management"
+		}
+	],
+	"settings": {}
+}
