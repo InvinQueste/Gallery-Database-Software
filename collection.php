@@ -8,26 +8,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['search'])) {
     $searchQuery = $conn->real_escape_string($_GET['search']);
 }
 
-// Handle Add to Cart (Buy) action
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['buy'])) {
-    $username = $_SESSION['username']; // Assuming username is stored in session
-    $artworkID = $_POST['artworkID']; // Artwork ID to be bought
-    $customerID = $_SESSION['id'];
-    // Insert into Buys table
-    $insertBuyQuery = "INSERT INTO Buys (CustomerID, ArtworkID) VALUES ('$customerID', '$artworkID')";
-    if ($conn->query($insertBuyQuery)) {
-        header("Location: collection.php");
-        exit;
-    } else {
-        echo "Error: " . $conn->error;
+// Initialize the cart if it doesn't exist
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cart'])) {
+    $artworkID = intval($_POST['artworkID']); // Sanitize input
+    if (!in_array($artworkID, $_SESSION['cart'])) {
+        $_SESSION['cart'][] = $artworkID; // Add product ID to the cart
     }
+    header("Location: collection.php"); // Redirect to clear form data
+    exit;
 }
 
 // Fetch products
 $sql = "SELECT * FROM Artwork";
+$cartItems = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+
+$conditions = [];
+
+// Filter by search query
 if (!empty($searchQuery)) {
-    $sql .= " WHERE Title LIKE '%$searchQuery%'";
+    $conditions[] = "Title LIKE '%$searchQuery%'";
 }
+
+// Exclude items in cart
+if (!empty($cartItems)) {
+    $cartIds = implode(',', array_map('intval', $cartItems)); // Sanitize and format IDs
+    $conditions[] = "ArtworkID NOT IN ($cartIds)";
+}
+
+// Exclude items that have been purchased
+$conditions[] = "ArtworkID NOT IN (SELECT ArtworkID FROM Buys)";
+
+// Combine all conditions into SQL query
+if (!empty($conditions)) {
+    $sql .= " WHERE " . implode(" AND ", $conditions);
+}
+
 $result = $conn->query($sql);
 ?>
 
@@ -74,7 +93,7 @@ $result = $conn->query($sql);
                     echo "</div>";
                     echo "<form method='POST' action=''>";
                     echo "<input type='hidden' name='artworkID' value='" . $row['ArtworkID'] . "'>";
-                    echo "<button class='add-to-cart' name='buy'>Add to Cart</button>";
+                    echo "<button class='add-to-cart' name='cart'>Add to Cart</button>";
                     echo "</form>";
                     echo "</div>";
                 }
