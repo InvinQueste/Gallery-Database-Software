@@ -21,7 +21,7 @@ if (isset($_SESSION['username'])) {
         <h1 class="index-name">ArtBase</h1>
         <div class="small-container" id="signIn">
             <h1 class="form-title">Sign In</h1>
-            <form method="post" action="register.php">
+            <form method="post" action="auth.php">
                 <div class="input-group">
                     <i class="fa-solid fa-user"></i>
                     <input type="text" name="username" id="username" placeholder="Username" required>

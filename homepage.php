@@ -19,7 +19,7 @@ if (!isset($_SESSION['username'])) {
 
 <p>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</p>
 
-<form action="logoutprocess.php" method="post">
+<form action="logout.php" method="post">
     <button type="submit">Logout</button>
 </form>
 

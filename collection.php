@@ -2,51 +2,56 @@
 session_start();
 include("connect.php");
 
+// Ensure user is logged in
+if (!isset($_SESSION['id'])) {
+    die("User not logged in.");
+}
+$customerID = intval($_SESSION['id']);
+
 // Search logic
 $searchQuery = "";
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['search'])) {
     $searchQuery = $conn->real_escape_string($_GET['search']);
 }
 
-// Initialize the cart if it doesn't exist
+// Initialize cart if it doesn't exist
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cart'])) {
-    $artworkID = intval($_POST['artworkID']); // Sanitize input
+    $artworkID = intval($_POST['artworkID']);
     if (!in_array($artworkID, $_SESSION['cart'])) {
-        $_SESSION['cart'][] = $artworkID; // Add product ID to the cart
+        $_SESSION['cart'][] = $artworkID;
     }
-    header("Location: collection.php"); // Redirect to clear form data
+    header("Location: collection.php");
     exit;
 }
 
-// Fetch products
-$sql = "SELECT * FROM Artwork";
-$cartItems = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+$cartItems = $_SESSION['cart'];
+$cartCondition = empty($cartItems) ? "" : "AND A.ArtworkID NOT IN (" . implode(',', array_map('intval', $cartItems)) . ")";
 
-$conditions = [];
+// Fetch preferred artist artworks
+$preferredArtistSQL = "SELECT DISTINCT A.*, AR.ArtistName FROM Artwork A
+JOIN Artist AR ON A.ArtistID = AR.ArtistID
+JOIN PrefersArtist PA ON A.ArtistID = PA.ArtistID
+WHERE PA.CustomerID = $customerID AND A.ArtworkID NOT IN (SELECT ArtworkID FROM Buys) $cartCondition
+ORDER BY PA.Priority LIMIT 6";
+$preferredArtistResult = $conn->query($preferredArtistSQL);
 
-// Filter by search query
-if (!empty($searchQuery)) {
-    $conditions[] = "Title LIKE '%$searchQuery%'";
-}
+// Fetch preferred group artworks
+$preferredGroupSQL = "SELECT DISTINCT A.*, AR.ArtistName FROM Artwork A
+JOIN Artist AR ON A.ArtistID = AR.ArtistID
+JOIN Belongs B ON A.ArtworkID = B.ArtworkID
+JOIN PrefersGroup PG ON B.GroupID = PG.GroupID
+WHERE PG.CustomerID = $customerID AND A.ArtworkID NOT IN (SELECT ArtworkID FROM Buys) $cartCondition
+ORDER BY PG.Priority LIMIT 6";
+$preferredGroupResult = $conn->query($preferredGroupSQL);
 
-// Exclude items in cart
-if (!empty($cartItems)) {
-    $cartIds = implode(',', array_map('intval', $cartItems)); // Sanitize and format IDs
-    $conditions[] = "ArtworkID NOT IN ($cartIds)";
-}
-
-// Exclude items that have been purchased
-$conditions[] = "ArtworkID NOT IN (SELECT ArtworkID FROM Buys)";
-
-// Combine all conditions into SQL query
-if (!empty($conditions)) {
-    $sql .= " WHERE " . implode(" AND ", $conditions);
-}
-
+// Fetch all products excluding cart and purchased items
+$sql = "SELECT A.*, AR.ArtistName FROM Artwork A
+JOIN Artist AR ON A.ArtistID = AR.ArtistID
+WHERE A.ArtworkID NOT IN (SELECT ArtworkID FROM Buys) $cartCondition";
 $result = $conn->query($sql);
 ?>
 
@@ -56,18 +61,6 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ArtBase Collection</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            background: #f5f5f5;
-        }
-    </style>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -77,13 +70,15 @@ $result = $conn->query($sql);
             <input type="text" name="search" placeholder="Search products..." value="<?php echo htmlspecialchars($searchQuery); ?>">
             <button type="submit">Search</button>
         </form>
-        <div class="product-list">
-            <?php
+
+        <?php function displayArtworkGrid($result, $heading) {
             if ($result && $result->num_rows > 0) {
+                echo "<h2>$heading</h2><div class='product-list'>";
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='product'>";
                     echo "<img src='Images/" . htmlspecialchars($row['ArtworkID']) . ".jpg' alt='" . htmlspecialchars($row['Title']) . "' class='product-image'>";
                     echo "<h3>" . htmlspecialchars($row['Title']) . "</h3>";
+                    echo "<p>" . htmlspecialchars($row['ArtistName']) . "</p>";
                     echo "<div class='price-year'>";
                     echo "<span>$" . number_format($row['Price'], 2) . "</span>";
                     echo "<span><i>" . htmlspecialchars($row['ArtworkYear']) . "</i></span>";
@@ -94,11 +89,14 @@ $result = $conn->query($sql);
                     echo "</form>";
                     echo "</div>";
                 }
-            } else {
-                echo "<p>No products found.</p>";
+                echo "</div>";
             }
-            ?>
-        </div>
+        }
+        
+        displayArtworkGrid($preferredArtistResult, "Top Preferred Artists' Artworks");
+        displayArtworkGrid($preferredGroupResult, "Top Preferred Groups' Artworks");
+        displayArtworkGrid($result, "All Artworks");
+        ?>
     </div>
 </body>
 </html>
