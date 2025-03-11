@@ -1,6 +1,12 @@
 <?php
 // Include database connection
+session_start();
 include 'connect.php';
+
+if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
+    header("Location: homepage.php");
+    exit;
+}
 
 // Initialize variables
 $from_date = isset($_GET['from_date']) ? $_GET['from_date'] : '';
@@ -50,7 +56,14 @@ switch ($sort_by) {
         $sql .= " ORDER BY Artwork.ArtworkYear DESC, Customer.CustomerName ASC";
         break;
     case 'type_asc':
+    case '':
         $sql .= " ORDER BY Artwork.Type ASC, Customer.CustomerName ASC";
+        break;
+    case 'artist_asc':
+        $sql .= " ORDER BY Artist.ArtistName ASC, Customer.CustomerName ASC";
+        break;
+    case 'artworkid_asc':
+        $sql .= " ORDER BY Artwork.ArtworkID ASC, Customer.CustomerName ASC";
         break;
 }
 
@@ -80,12 +93,14 @@ $result = $conn->query($sql);
         
         <label>Sort By:</label>
         <select name="sort_by">
-            <option value="">None</option>
+            <option value="" <?php if ($sort_by == '') echo 'selected'; ?>>None</option>
+            <option value="artworkid_asc" <?php if ($sort_by == 'artworkid_asc') echo 'selected'; ?>>Artwork ID</option>
             <option value="price_asc" <?php if ($sort_by == 'price_asc') echo 'selected'; ?>>Price: Low to High</option>
             <option value="price_desc" <?php if ($sort_by == 'price_desc') echo 'selected'; ?>>Price: High to Low</option>
             <option value="year_asc" <?php if ($sort_by == 'year_asc') echo 'selected'; ?>>Artwork Year: Oldest First</option>
             <option value="year_desc" <?php if ($sort_by == 'year_desc') echo 'selected'; ?>>Artwork Year: Newest First</option>
             <option value="type_asc" <?php if ($sort_by == 'type_asc') echo 'selected'; ?>>Artwork Type: A-Z</option>
+            <option value="artist_asc" <?php if ($sort_by == 'artist_asc') echo 'selected'; ?>>Artist Name: A-Z</option>
         </select>
         
         <button type="submit">Filter</button>

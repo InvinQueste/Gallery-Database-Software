@@ -155,16 +155,16 @@ INSERT INTO Belongs (ArtworkID, GroupID) VALUES
 (3025, 4004),
 (3026, 4004);
 
-INSERT INTO Customer (CustomerID, CustomerName, Username, Password, Address) VALUES
-(1001, 'John Brown', 'cust1', 'cust1pass', 'Shanghai'),
-(1002, 'Alice Smith', 'cust2', 'cust2pass', 'Cape Town'),
-(1003, 'Bob Johnson', 'cust3', 'cust3pass', 'Mumbai'),
-(1004, 'Charlie Davis', 'cust4', 'cust4pass', 'Glasgow'),
-(1005, 'Diana Lee', 'cust5', 'cust5pass', 'Amsterdam'),
-(1006, 'Fiona Taylor', 'cust6', 'cust6pass', 'Sacramento'),
-(1007, 'George Anderson', 'cust7', 'cust7pass', 'Melbourne'),
-(1008, 'Hannah Wilson', 'cust8', 'cust8pass', 'Moscow'),
-(1009, 'Ethan Miller', 'cust9', 'cust9pass', 'Kolkata'),
-(1010, 'Jane Frown', 'cust10', 'cust10pass', 'Toronto'),
-(1011, 'Julia Martin', 'cust11', 'cust11pass', 'Paris'),
-(1012, 'Ian Clark', 'cust12', 'cust12pass', 'Kolkata');
+INSERT INTO Customer (CustomerID, CustomerName, Username, Password, Address, TotalSpending) VALUES
+(1001, 'John Brown', 'cust1', 'cust1pass', 'Shanghai', 0.00),
+(1002, 'Alice Smith', 'cust2', 'cust2pass', 'Cape Town', 0.00),
+(1003, 'Bob Johnson', 'cust3', 'cust3pass', 'Mumbai', 0.00),
+(1004, 'Charlie Davis', 'cust4', 'cust4pass', 'Glasgow', 0.00),
+(1005, 'Diana Lee', 'cust5', 'cust5pass', 'Amsterdam', 0.00),
+(1006, 'Fiona Taylor', 'cust6', 'cust6pass', 'Sacramento', 0.00),
+(1007, 'George Anderson', 'cust7', 'cust7pass', 'Melbourne', 0.00),
+(1008, 'Hannah Wilson', 'cust8', 'cust8pass', 'Moscow', 0.00),
+(1009, 'Ethan Miller', 'cust9', 'cust9pass', 'Kolkata', 0.00),
+(1010, 'Jane Frown', 'cust10', 'cust10pass', 'Toronto', 0.00),
+(1011, 'Julia Martin', 'cust11', 'cust11pass', 'Paris', 0.00),
+(1012, 'Ian Clark', 'cust12', 'cust12pass', 'Kolkata', 0.00);

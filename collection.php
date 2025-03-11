@@ -36,7 +36,7 @@ $preferredArtistSQL = "SELECT DISTINCT A.*, AR.ArtistName FROM Artwork A
 JOIN Artist AR ON A.ArtistID = AR.ArtistID
 JOIN PrefersArtist PA ON A.ArtistID = PA.ArtistID
 WHERE PA.CustomerID = $customerID AND A.ArtworkID NOT IN (SELECT ArtworkID FROM Buys) $cartCondition
-ORDER BY PA.Priority LIMIT 6";
+ORDER BY PA.Priority LIMIT 8";
 $preferredArtistResult = $conn->query($preferredArtistSQL);
 
 // Fetch preferred group artworks
@@ -45,7 +45,7 @@ JOIN Artist AR ON A.ArtistID = AR.ArtistID
 JOIN Belongs B ON A.ArtworkID = B.ArtworkID
 JOIN PrefersGroup PG ON B.GroupID = PG.GroupID
 WHERE PG.CustomerID = $customerID AND A.ArtworkID NOT IN (SELECT ArtworkID FROM Buys) $cartCondition
-ORDER BY PG.Priority LIMIT 6";
+ORDER BY PG.Priority LIMIT 8";
 $preferredGroupResult = $conn->query($preferredGroupSQL);
 
 // Fetch all products excluding cart and purchased items

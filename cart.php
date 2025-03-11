@@ -47,54 +47,62 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['buy'])) {
             $updateSpendingQuery = "UPDATE Customer SET TotalSpending = TotalSpending + $artworkPrice WHERE CustomerID = '$customerID'";
             $conn->query($updateSpendingQuery);
 
-            // Create a temporary table for ranking artists
-            $tempArtistTableQuery = "
-                CREATE TEMPORARY TABLE TempPrefersArtist AS
-                SELECT CustomerID, ArtistID, 
-                    @rank := IF(@prev_cust = CustomerID, @rank + 1, 1) AS Priority,
-                    @prev_cust := CustomerID
-                FROM (
-                    SELECT CustomerID, ArtistID, COUNT(*) AS PurchaseCount
-                    FROM Buys 
-                    JOIN Artwork ON Buys.ArtworkID = Artwork.ArtworkID
-                    WHERE CustomerID = '$customerID'
-                    GROUP BY CustomerID, ArtistID
-                    ORDER BY CustomerID, PurchaseCount DESC
-                ) AS RankedArtist, (SELECT @rank := 0, @prev_cust := NULL) AS Vars
-                HAVING Priority <= 3";
-            $conn->query($tempArtistTableQuery);
+            /* -------------------------------
+            Update Preferred Artists Table
+            -------------------------------
+            1. Count the frequency of items bought for each artist
+            2. Order by frequency (highest first)
+            3. Take the top 3 and update the PrefersArtist table
+            */
+            $artistQuery = "SELECT A.ArtistID, COUNT(*) AS freq
+            FROM Buys B
+            JOIN Artwork A ON B.ArtworkID = A.ArtworkID
+            WHERE B.CustomerID = '$customerID'
+            GROUP BY A.ArtistID
+            ORDER BY freq DESC
+            LIMIT 3";
+            $artistResult = $conn->query($artistQuery);
+            if ($artistResult) {
+            // Clear existing preferred artists for this customer
+            $conn->query("DELETE FROM PrefersArtist WHERE CustomerID = '$customerID'");
+            $priority = 1;
+            while ($row = $artistResult->fetch_assoc()) {
+            $artistID = $row['ArtistID'];
+            $insertPrefArtist = "INSERT INTO PrefersArtist (CustomerID, ArtistID, Priority)
+                                VALUES ('$customerID', '$artistID', '$priority')";
+            $conn->query($insertPrefArtist);
+            $priority++;
+            }
+            }
 
-            // Insert top 3 artists into PrefersArtist
-            $updateArtistPrefQuery = "
-                INSERT INTO PrefersArtist (CustomerID, ArtistID, Priority)
-                SELECT CustomerID, ArtistID, Priority FROM TempPrefersArtist
-                ON DUPLICATE KEY UPDATE Priority = VALUES(Priority)";
-            $conn->query($updateArtistPrefQuery);
-
-
-            // Create a temporary table for ranking groups
-            $tempGroupTableQuery = "
-                CREATE TEMPORARY TABLE TempPrefersGroup AS
-                SELECT CustomerID, GroupID, 
-                    @rank := IF(@prev_cust = CustomerID, @rank + 1, 1) AS Priority,
-                    @prev_cust := CustomerID
-                FROM (
-                    SELECT CustomerID, GroupID, COUNT(*) AS PurchaseCount
-                    FROM Buys
-                    JOIN Belongs ON Buys.ArtworkID = Belongs.ArtworkID
-                    WHERE CustomerID = '$customerID'
-                    GROUP BY CustomerID, GroupID
-                    ORDER BY CustomerID, PurchaseCount DESC
-                ) AS RankedGroup, (SELECT @rank := 0, @prev_cust := NULL) AS Vars
-                HAVING Priority <= 3";
-            $conn->query($tempGroupTableQuery);
-
-            // Insert top 3 groups into PrefersGroup
-            $updateGroupPrefQuery = "
-                INSERT INTO PrefersGroup (CustomerID, GroupID, Priority)
-                SELECT CustomerID, GroupID, Priority FROM TempPrefersGroup
-                ON DUPLICATE KEY UPDATE Priority = VALUES(Priority)";
-            $conn->query($updateGroupPrefQuery);
+            /* -------------------------------
+            Update Preferred Groups Table
+            -------------------------------
+            1. Use a join on Artwork and Belongs (via Buys) to count frequency per group
+            2. Order by frequency descending and take the top 3 groups
+            3. Update the PrefersGroup table accordingly
+            */
+            $groupQuery = "SELECT B.GroupID, COUNT(*) AS freq
+                FROM Buys Bu
+                JOIN Artwork A ON Bu.ArtworkID = A.ArtworkID
+                JOIN Belongs B ON A.ArtworkID = B.ArtworkID
+                WHERE Bu.CustomerID = '$customerID'
+                GROUP BY B.GroupID
+                ORDER BY freq DESC
+                LIMIT 3";
+            $groupResult = $conn->query($groupQuery);
+            if ($groupResult) {
+            // Clear existing preferred groups for this customer
+            $conn->query("DELETE FROM PrefersGroup WHERE CustomerID = '$customerID'");
+            $priority = 1;
+            while ($row = $groupResult->fetch_assoc()) {
+            $groupID = $row['GroupID'];
+            $insertPrefGroup = "INSERT INTO PrefersGroup (CustomerID, GroupID, Priority)
+                                VALUES ('$customerID', '$groupID', '$priority')";
+            $conn->query($insertPrefGroup);
+            $priority++;
+            }
+            }
 
 
             // Remove the purchased artwork from the cart
