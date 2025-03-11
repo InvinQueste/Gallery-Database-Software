@@ -8,10 +8,6 @@ if (isset($_POST['signIn'])) {
     $password = $_POST['password'];
     $loginType = $_POST['loginType'];}
 
-    
-
-
-
     $sql = "SELECT * FROM Customer WHERE Username='$email' and Password='$password'";
     $result = $conn->query($sql);
     if ($loginType === 'customer') {

@@ -56,10 +56,6 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ArtBase Collection</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bokor&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -86,6 +82,7 @@ $result = $conn->query($sql);
             if ($result && $result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='product'>";
+                    echo "<img src='Images/" . htmlspecialchars($row['ArtworkID']) . ".jpg' alt='" . htmlspecialchars($row['Title']) . "' class='product-image'>";
                     echo "<h3>" . htmlspecialchars($row['Title']) . "</h3>";
                     echo "<div class='price-year'>";
                     echo "<span>$" . number_format($row['Price'], 2) . "</span>";
