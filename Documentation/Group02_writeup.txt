@@ -1,0 +1,34 @@
+﻿Database Management Systems Assignment
+Group 02
+
+
+Group Members:-
+
+
+Roll No.
+	Name
+	05
+	Arkopravo Saha
+	07
+	Diptoneel De
+	22
+	Srijan Saha
+	
+
+
+
+Topic: Art Gallery Database (In place of Configuration Management Software)
+
+
+Question:
+Although you always wanted to be an artist, you ended up being an expert on databases because you love to cook data and you somehow confused `data base' with `data baste.'
+ 
+Your old love is still there, however, so you set up a database company, ArtBase, that builds a product for art galleries. The core of this product is a database with a schema that captures all the information that galleries need to maintain. Galleries keep information about artists, their names (which are unique), birthplaces, age, and style of art. For each piece of artwork, the artist, the year it was made, its unique title, its type of art (e.g., painting, lithograph, sculpture, photograph), and its price must be stored. Pieces of artwork are also classified into groups of various kinds, for example, portraits, still life, works by Picasso or works of the 19th century; a given piece may belong to more than one group. Each group is identified by a name (like those above) that describes the group. Finally, galleries keep information about customers. For each customer, galleries keep their unique name, address, total amount of dollars they have spent in the gallery (very important!), and the artists and groups of art that each customer tends to like. Each transaction (for the procurement of art-work) needs to be recorded. You can assume more requirement(s) to make your solution more realistic. 
+
+
+To Do List:
+1. Draw The ER diagram for the database.
+2. Represent the relational schema, and normalize it to ensure the best database design possible.
+3. Create the database in MySQL
+4. Create an input form for customers to purchase art pieces. They should be able to buy multiple pieces at once. Purchases should be reflected in the database. Make it as similar to real-life purchasing interfaces as possible.
+5. Create an interface for the gallery to generate reports on art pieces bought within a specified date range. The art pieces should be sorted by genre first and within genre alphabetically by the purchasers’ names.

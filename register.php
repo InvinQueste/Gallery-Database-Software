@@ -16,14 +16,14 @@ if (isset($_POST['signIn'])) {
             $row = $result->fetch_assoc();
             $_SESSION['username'] = $row['Username'];
             $_SESSION['id'] = $row['CustomerID'];
-            header("Location: logout.php");
+            header("Location: homepage.php");
             exit();
         } else {
         }
     }
     elseif ($loginType === 'admin') {
         if ($email === 'admin' && $password === 'adminpass') {
-            header("Location: logout.php");
+            header("Location: homepage.php");
             exit();
         } else {  
         }
