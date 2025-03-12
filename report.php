@@ -14,6 +14,7 @@ include('navbar.php');
 $from_date = isset($_GET['from_date']) ? $_GET['from_date'] : '';
 $to_date = isset($_GET['to_date']) ? $_GET['to_date'] : '';
 $sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : '';
+$search_title = isset($_GET['search_title']) ? $_GET['search_title'] : '';
 $search_customer = isset($_GET['search_customer']) ? $_GET['search_customer'] : '';
 $search_artist = isset($_GET['search_artist']) ? $_GET['search_artist'] : '';
 
@@ -36,6 +37,9 @@ if (!empty($from_date) && !empty($to_date)) {
 }
 
 // Apply search filters
+if (!empty($search_title)) {
+    $sql .= " AND Artwork.Title LIKE '%$search_title%'";
+}
 if (!empty($search_customer)) {
     $sql .= " AND Customer.CustomerName LIKE '%$search_customer%'";
 }
@@ -91,6 +95,10 @@ $result = $conn->query($sql);
         <div class="form-group">
         <label>To Date:</label>
         <input type="date" name="to_date" value="<?php echo $to_date; ?>">
+        </div>
+        <div class="form-group">
+        <label>Search Title:</label>
+        <input type="text" name="search_title" value="<?php echo $search_title; ?>" placeholder="Enter artwork title">
         </div>
         <div class="form-group">
         <label>Search Customer:</label>
