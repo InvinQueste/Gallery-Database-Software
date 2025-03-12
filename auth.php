@@ -1,7 +1,7 @@
 <?php
 
 include 'connect.php';
-
+include 'navbar.php';
 
 if (isset($_POST['signIn'])) {
     $email = $_POST['username'];
@@ -41,23 +41,29 @@ if (isset($_POST['signIn'])) {
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            color:rgb(0, 0, 0);
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color:rgb(131, 20, 20);
+            font-family: "Comforter";
+            font-size: 60;
+        }
+    </style>
     <title>Login Error</title>
 </head>
 
 <body>
-    <div style="text-align:center; padding:15%;">
-        <p style="font-size:50px;color:red;font-weight:bold;">
-            Login Error!!<br> <br>
-
-        </p>
-        <p style="font-size:30px; font-weight:normal;">
-            Incorrect Username or Password<br> <br>
-
-        </p>
-
-        <a href="index.php">
-            <p style="font-size:25px; font-weight:normal;">Try Again</p>
-        </a>
+    <div class="c404container">
+        <h1>Login Error!</h1>
+        <p>Incorrect username or password.</p>
+        <br>
+        <a class="c404btn" href="index.php">Return to Login</a>
+        <br>
+        <a class="c404btn" href="forgor.php">Forgot password?</a>
     </div>
 </body>
 
