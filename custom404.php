@@ -18,14 +18,15 @@ include('navbar.php');
             font-family: Arial, sans-serif;
         }
         h1 {
-            color:rgb(0, 0, 0);
+            color:rgb(131, 20, 20);
+            font-family: "Comforter";
+            font-size: 50;
         }
     </style>
 </head>
 <body>
     <div class="c404container">
         <h1>This page must be minimalist art...</h1>
-        <br>
         <p>There's nothing here.</p>
         <br>
         <a class="c404btn" href="/Gallery-Database-Software/homepage.php">Return to Home</a>
