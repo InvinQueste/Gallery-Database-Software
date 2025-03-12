@@ -156,8 +156,8 @@ INSERT INTO Belongs (ArtworkID, GroupID) VALUES
 (3026, 4004);
 
 INSERT INTO Customer (CustomerID, CustomerName, Username, Password, Address, TotalSpending) VALUES
-(1001, 'John Brown', 'cust1', 'cust1pass', 'Shanghai', 0.00),
-(1002, 'Alice Smith', 'cust2', 'cust2pass', 'Cape Town', 0.00),
+(1001, 'John Brown', 'cust1', 'cust1pass', 'Shanghai', 283400.00),
+(1002, 'Alice Smith', 'cust2', 'cust2pass', 'Cape Town', 727000.00),
 (1003, 'Bob Johnson', 'cust3', 'cust3pass', 'Mumbai', 0.00),
 (1004, 'Charlie Davis', 'cust4', 'cust4pass', 'Glasgow', 0.00),
 (1005, 'Diana Lee', 'cust5', 'cust5pass', 'Amsterdam', 0.00),
