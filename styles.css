@@ -313,6 +313,11 @@ h1 {
   }
 }
 
+.section-heading {
+    padding: 20px 0;
+    text-align: center;
+}
+
 .product-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, 260px);

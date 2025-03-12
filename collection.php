@@ -73,7 +73,7 @@ $result = $conn->query($sql);
 
         <?php function displayArtworkGrid($result, $heading) {
             if ($result && $result->num_rows > 0) {
-                echo "<h2>$heading</h2><div class='product-list'>";
+                echo "<h2 class='section-heading'>$heading</h2><div class='product-list'>";
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='product'>";
                     echo "<img src='Images/" . htmlspecialchars($row['ArtworkID']) . ".jpg' alt='" . htmlspecialchars($row['Title']) . "' class='product-image'>";
@@ -93,8 +93,8 @@ $result = $conn->query($sql);
             }
         }
         
-        displayArtworkGrid($preferredArtistResult, "Top Preferred Artists' Artworks");
-        displayArtworkGrid($preferredGroupResult, "Top Preferred Groups' Artworks");
+        displayArtworkGrid($preferredArtistResult, "Your Preferred Artists");
+        displayArtworkGrid($preferredGroupResult, "Your Preferred Groups");
         displayArtworkGrid($result, "All Artworks");
         ?>
     </div>
