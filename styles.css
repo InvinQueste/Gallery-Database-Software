@@ -389,3 +389,97 @@ h1 {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
+
+.home-container {
+  width: 60%;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Content Layout */
+.home-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* Ensures equal height */
+  gap: 5px; /* Reduced gap between panels */
+}
+
+/* Panels */
+.home-left-panel, .home-right-panel {
+  width: 45%;
+  background: #bbeeff;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-left-panel {
+  align-items: center; /* Center everything */
+  text-align: center; /* Center text */
+  justify-content: space-between;
+}
+
+.home-right-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Buttons */
+.home-cart-btn, .home-collection-btn {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+}
+
+.home-cart-btn:hover, .home-collection-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Most Expensive Item Image */
+.home-expensive-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  background: #bbeeff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Centered Logout Button */
+.home-logout-form {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.home-logout-btn {
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.home-logout-btn:hover {
+  background-color: darkred;
+}
+
+/* Art Quote */
+.home-quote {
+  font-style: italic;
+  margin-top: 20px;
+}
