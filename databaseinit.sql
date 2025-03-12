@@ -168,3 +168,26 @@ INSERT INTO Customer (CustomerID, CustomerName, Username, Password, Address, Tot
 (1010, 'Jane Frown', 'cust10', 'cust10pass', 'Toronto', 0.00),
 (1011, 'Julia Martin', 'cust11', 'cust11pass', 'Paris', 0.00),
 (1012, 'Ian Clark', 'cust12', 'cust12pass', 'Kolkata', 0.00);
+
+INSERT INTO buys (ArtworkID, CustomerID, TransactionTime) VALUES
+(3011, 1002, '2023-12-27 15:41:27'),
+(3012, 1001, '2024-02-12 15:40:27'),
+(3013, 1001, '2024-10-01 15:40:27'),
+(3021, 1001, '2025-01-17 15:40:27'),
+(3022, 1001, '2024-05-07 15:40:27'),
+(3023, 1002, '2023-11-22 15:41:27'),
+(3024, 1002, '2024-07-19 15:41:27');
+
+INSERT INTO prefersartist (CustomerID, ArtistID, Priority) VALUES
+(1001, 2004, 1),
+(1001, 2006, 2),
+(1001, 2007, 3),
+(1002, 2004, 2),
+(1002, 2007, 1);
+
+INSERT INTO prefersgroup (CustomerID, GroupID, Priority) VALUES
+(1001, 4002, 2),
+(1001, 4003, 3),
+(1001, 4004, 1),
+(1002, 4003, 2),
+(1002, 4004, 1);
