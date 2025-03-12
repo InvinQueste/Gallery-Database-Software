@@ -8,6 +8,11 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
+if ($_SESSION['username']=='admin') {
+    header("Location: adminhome.php");
+    exit();
+}
+
 $username = $_SESSION['username'];
 $customerID = $_SESSION['id']; // Assuming CustomerID is stored in session
 
@@ -90,12 +95,12 @@ $randomQuote = $quotes[array_rand($quotes)];
 <body>
 
 <div class="home-container">
-    <h1 class="home-title">Welcome, <?php echo htmlspecialchars($customerName); ?>!</h1>
+    <h1 class="home-title">Welcome, <?php echo htmlspecialchars($customerUsername); ?>!</h1>
 
     <div class="home-content">
         <!-- Left Panel -->
         <div class="home-left-panel">
-            <p><strong>Username:</strong> <?php echo htmlspecialchars($customerUsername); ?></p>
+            <p><strong>Name:</strong> <?php echo htmlspecialchars($customerName); ?></p>
             <p><strong>Total Spending:</strong> $<?php echo number_format($totalSpending, 2); ?></p>
             <p><strong>Current Cart Total:</strong> $<?php echo number_format($totalCartValue, 2); ?></p>
             
