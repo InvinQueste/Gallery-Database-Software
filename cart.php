@@ -2,6 +2,13 @@
 session_start();
 include("connect.php");
 
+// Redirect if not logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: index.php");
+    exit();
+}
+include('navbar.php');
+
 // Check if the cart exists and is not empty
 if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
     $cartEmpty = true;
@@ -227,6 +234,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['clear_all'])) {
     exit;
 }
 
+$totalCartValue = 0;
+if (!empty($_SESSION['cart'])) {
+    $cartIDs = implode(',', array_map('intval', $_SESSION['cart']));
+    $cartQuery = "SELECT SUM(Price) AS Total FROM Artwork WHERE ArtworkID IN ($cartIDs)";
+    $cartResult = $conn->query($cartQuery);
+    
+    if ($cartResult && $cartRow = $cartResult->fetch_assoc()) {
+        $totalCartValue = $cartRow['Total'];
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -252,16 +270,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['clear_all'])) {
     </style>
     -->
 </head>
-<body class="cart-body">
-    <h1 class="cart-heading">Your Cart</h1>
-    <h4 class="cart-logout"><a href="logout.php">logout</a></h4>
+<body>
     <div class="cart-container">
+    <h1 class="home-title">Your Cart</h1>
         <?php if ($cartEmpty): ?>
             <div class="cart-empty-message">Your cart is empty.</div>
         <?php else: ?>
-            <form method="POST" action="cart.php">
-                <button type="submit" name="buy_all">Buy All</button>
-                <button type="submit" name="clear_all">Clear All</button>
+            <form method="POST" action="cart.php" style="display: flex; justify-content: center;">
+                <button type="submit" name="buy_all" class="cart-button cart-buy">Buy All</button>
+                <button type="submit" name="clear_all" class="cart-button cart-remove">Clear All</button>
             </form>
 
             <table class="cart-table">
@@ -289,6 +306,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['clear_all'])) {
                             </td>
                         </tr>
                     <?php endforeach; ?>
+                    <tr>
+                        <td><strong>Total</strong></td>
+                        <td><strong>$<?php echo number_format($totalCartValue, 2); ?></strong></td>
+                        <td>
+                            <form method="POST" action="cart.php" style="display: inline;">
+                                    <input type="hidden" name="artworkID" value="<?php echo $item['ArtworkID']; ?>">
+                                    <button type="submit" name="buy_all" class="cart-button cart-buy">Buy All</button>
+                            </form>
+                            <form method="POST" action="cart.php" style="display: inline;">
+                                <input type="hidden" name="artworkID" value="<?php echo $item['ArtworkID']; ?>">
+                                <button type="submit" name="clear_all" class="cart-button cart-remove">Clear All</button>
+                            </form>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         <?php endif; ?>
