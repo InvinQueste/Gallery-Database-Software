@@ -80,19 +80,27 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Transaction Report</h1>
+    <div class="report-container">
+    <h1 class="home-title">Transaction Report</h1>
     <form method="GET">
+    <div class="form-container">
+        <div class="form-group">
         <label>From Date:</label>
         <input type="date" name="from_date" value="<?php echo $from_date; ?>">
+        </div>
+        <div class="form-group">
         <label>To Date:</label>
         <input type="date" name="to_date" value="<?php echo $to_date; ?>">
-        
+        </div>
+        <div class="form-group">
         <label>Search Customer:</label>
         <input type="text" name="search_customer" value="<?php echo $search_customer; ?>" placeholder="Enter customer name">
-        
+        </div>
+        <div class="form-group">
         <label>Search Artist:</label>
         <input type="text" name="search_artist" value="<?php echo $search_artist; ?>" placeholder="Enter artist name">
-        
+        </div>
+        <div class="form-group">
         <label>Sort By:</label>
         <select name="sort_by">
             <option value="" <?php if ($sort_by == '') echo 'selected'; ?>>None</option>
@@ -104,10 +112,13 @@ $result = $conn->query($sql);
             <option value="type_asc" <?php if ($sort_by == 'type_asc') echo 'selected'; ?>>Artwork Type: A-Z</option>
             <option value="artist_asc" <?php if ($sort_by == 'artist_asc') echo 'selected'; ?>>Artist Name: A-Z</option>
         </select>
-        
-        <button type="submit">Filter</button>
+        </div>
+        <div class="submit-group">
+        <button type="submit" class="report-btn">Filter</button>
+        </div>
+    </div>
     </form>
-    <table border="1">
+    <table class="cart-table">
         <thead>
             <tr>
                 <th>Artwork ID</th>
@@ -139,5 +150,6 @@ $result = $conn->query($sql);
             <?php endif; ?>
         </tbody>
     </table>
+    </div>
 </body>
 </html>

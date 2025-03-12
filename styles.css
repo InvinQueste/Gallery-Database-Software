@@ -521,10 +521,11 @@ h1 {
 .cart-container {
     max-width: 800px;
     margin: 120px auto;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.3);
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    backdrop-filter: blur(10px);
 }
 
 .cart-empty-message {
@@ -580,6 +581,112 @@ h1 {
 
 .cart-button:hover {
     opacity: 0.8;
+}
+
+.report-btn {
+    background-color: #ff9d00; /* Green background color */
+    color: white; /* White text color */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 40px; /* Round edges */
+    cursor: pointer;
+    text-align: center;
+    width: 25%;
+}
+
+/* Hover effect for submit button */
+.report-btn:hover {
+    background-color: rgb(234, 83, 7); /* Darker green when hovered */
+}
+
+.report-container {
+  width: 1200px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 120px auto;
+  border: 2px solid rgba(255, 255, 255, .2);
+  /* color: white; */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 30px 40px;
+  backdrop-filter: blur(10px);
+  /* overflow-y: auto; */
+}
+
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    grid-gap: 20px; /* Space between items */
+    max-width: 900px; /* Optional: adjust width of the container */
+    margin: 0 auto; /* Center the container */
+    & input[name="sort_by"] {
+      grid-column: span 2; 
+      align-self: center;
+    }
+}
+
+/* Ensure labels align properly */
+.form-container label {
+    font-size: 16px;
+    color: black;
+    display: inline-block;
+    margin-right: 10px;
+    text-align: center; /* Centers text inside the label */
+    width: 100%; /* Make the label take up full width */
+    margin-bottom: 5px; /* Optional: space between label and select */
+    display: flex;
+    justify-content: center; /* Centers the label text */
+    align-items: center; /* Vertically centers text */
+}
+
+/* Scoped style for the select dropdowns inside .form-container */
+.form-container select,
+.form-container input[type="date"],
+.form-container input[type="text"] {
+    width: 100%; /* Makes select span the full width of its container */
+    height: 35px;
+    background: transparent;
+    border: 2px solid black;
+    border-radius: 40px;
+    font-size: 15px;
+    color: black;
+    padding: 5px 45px 5px 32px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 25px;
+    margin-bottom: 10px;
+    &::placeholder {
+      color: #070707;
+    }
+    &:focus {
+      outline: none;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+}
+
+/* Option styles scoped within .form-container */
+.form-container option {
+    background: transparent;
+    border: none;
+    font-size: 15px;
+    color: rgb(4, 0, 0);
+    padding: 5px 0;
+    text-align: center;
+}
+
+/* Flexbox styling for form group inside .form-container */
+.form-container .form-group {
+    display: flex;
+    flex-direction: column; /* Stack label and input/select vertically */
+    align-items: flex-start; /* Align label and input/select to the left */
+    justify-content: flex-start;
+}
+
+/* Styling for the submit button container */
+.form-container .submit-group {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+    grid-column: span 2; /* Make the submit button span both columns if needed */
 }
 
 .navbar {
