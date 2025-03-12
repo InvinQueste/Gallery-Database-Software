@@ -96,7 +96,6 @@ $lastSoldArtwork = $lastSoldResult->fetch_assoc();
     <h1 class="admin-title">Welcome, Front Man!</h1>
 
     <div class="admin-content">
-        <!-- Left Panel -->
         <div class="admin-left-panel">
             <div class="admin-stats">
                 <h2>Total Sales</h2>
@@ -128,7 +127,6 @@ $lastSoldArtwork = $lastSoldResult->fetch_assoc();
             </div>
         </div>
 
-        <!-- Right Panel -->
         <div class="admin-right-panel">
             <?php if ($lastSoldArtwork): ?>
                 <h2>Last Sold Artwork</h2>
@@ -142,12 +140,10 @@ $lastSoldArtwork = $lastSoldResult->fetch_assoc();
         </div>
     </div>
 
-    <!-- Sales Report Button -->
     <form action="report.php">
         <button type="submit" class="admin-report-btn">View Sales Report</button>
     </form>
 
-    <!-- Random Quote -->
     <p class="admin-quote"><?php echo htmlspecialchars($randomQuote); ?></p>
 </div>
 

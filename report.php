@@ -1,5 +1,4 @@
 <?php
-// Include database connection
 session_start();
 include 'connect.php';
 
@@ -10,7 +9,6 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
 
 include('navbar.php');
 
-// Initialize variables
 $from_date = isset($_GET['from_date']) ? $_GET['from_date'] : '';
 $to_date = isset($_GET['to_date']) ? $_GET['to_date'] : '';
 $sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : '';
@@ -18,7 +16,6 @@ $search_title = isset($_GET['search_title']) ? $_GET['search_title'] : '';
 $search_customer = isset($_GET['search_customer']) ? $_GET['search_customer'] : '';
 $search_artist = isset($_GET['search_artist']) ? $_GET['search_artist'] : '';
 
-// Base SQL query
 $sql = "SELECT Artwork.ArtworkID, Artwork.Title, Artist.ArtistName, Artwork.ArtworkYear, Artwork.Type, 
                Artwork.Price, Customer.CustomerName, Buys.TransactionTime
         FROM Buys
@@ -27,7 +24,6 @@ $sql = "SELECT Artwork.ArtworkID, Artwork.Title, Artist.ArtistName, Artwork.Artw
         INNER JOIN Artist ON Artwork.ArtistID = Artist.ArtistID
         WHERE 1=1";
 
-// Apply date filter
 if (!empty($from_date) && !empty($to_date)) {
     if ($from_date > $to_date) {
         echo "<script>alert('Error: From date cannot be later than To date!');</script>";
@@ -36,7 +32,6 @@ if (!empty($from_date) && !empty($to_date)) {
     }
 }
 
-// Apply search filters
 if (!empty($search_title)) {
     $sql .= " AND Artwork.Title LIKE '%$search_title%'";
 }
@@ -47,7 +42,6 @@ if (!empty($search_artist)) {
     $sql .= " AND Artist.ArtistName LIKE '%$search_artist%'";
 }
 
-// Apply sorting options
 switch ($sort_by) {
     case 'price_asc':
         $sql .= " ORDER BY Artwork.Price ASC, Customer.CustomerName ASC";

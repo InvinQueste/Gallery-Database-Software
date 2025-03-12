@@ -418,15 +418,13 @@ h1 {
   text-align: center;
 }
 
-/* Content Layout */
 .home-content {
   display: flex;
   justify-content: space-between;
-  align-items: stretch; /* Ensures equal height */
-  gap: 5px; /* Reduced gap between panels */
+  align-items: stretch;
+  gap: 5px;
 }
 
-/* Panels */
 .home-left-panel, .home-right-panel {
   width: 45%;
   background: #f7a24d;
@@ -437,8 +435,8 @@ h1 {
 }
 
 .home-left-panel {
-  align-items: center; /* Center everything */
-  text-align: center; /* Center text */
+  align-items: center;
+  text-align: center;
   justify-content: space-between;
   margin: 0px 18px 0px 24px;
 }
@@ -450,7 +448,6 @@ h1 {
   margin: 0px 24px 0px 18px;
 }
 
-/* Buttons */
 .home-cart-btn, .home-collection-btn {
   display: block;
   width: 100%;
@@ -469,7 +466,6 @@ h1 {
   background-color: #7e1a16;
 }
 
-/* Most Expensive Item Image */
 .home-expensive-image {
   width: 100%;
   max-height: 300px;
@@ -485,7 +481,6 @@ h1 {
   font-size: 56;
 }
 
-/* Centered Logout Button */
 .home-logout-form {
   text-align: center;
   margin-top: 20px;
@@ -504,7 +499,6 @@ h1 {
   background-color: darkred;
 }
 
-/* Art Quote */
 .home-quote {
   font-style: italic;
   margin-top: 20px;
@@ -586,20 +580,19 @@ h1 {
 }
 
 .report-btn {
-    background-color: #ff9d00; /* Green background color */
-    color: white; /* White text color */
+    background-color: #ff9d00;
+    color: white;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
-    border-radius: 40px; /* Round edges */
+    border-radius: 40px;
     cursor: pointer;
     text-align: center;
     width: 25%;
 }
 
-/* Hover effect for submit button */
 .report-btn:hover {
-    background-color: rgb(234, 83, 7); /* Darker green when hovered */
+    background-color: rgb(234, 83, 7);
 }
 
 .report-container {
@@ -607,45 +600,41 @@ h1 {
   background: rgba(255, 255, 255, 0.3);
   margin: 120px auto;
   border: 2px solid rgba(255, 255, 255, .2);
-  /* color: white; */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   padding: 30px 40px;
   backdrop-filter: blur(10px);
-  /* overflow-y: auto; */
 }
 
 .form-container {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two columns */
-    grid-gap: 20px; /* Space between items */
-    max-width: 900px; /* Optional: adjust width of the container */
-    margin: 0 auto; /* Center the container */
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
     & input[name="sort_by"] {
       grid-column: span 2; 
       align-self: center;
     }
 }
 
-/* Ensure labels align properly */
 .form-container label {
     font-size: 16px;
     color: black;
     display: inline-block;
     margin-right: 10px;
-    text-align: center; /* Centers text inside the label */
-    width: 100%; /* Make the label take up full width */
-    margin-bottom: 5px; /* Optional: space between label and select */
+    text-align: center;
+    width: 100%;
+    margin-bottom: 5px;
     display: flex;
-    justify-content: center; /* Centers the label text */
-    align-items: center; /* Vertically centers text */
+    justify-content: center;
+    align-items: center;
 }
 
-/* Scoped style for the select dropdowns inside .form-container */
 .form-container select,
 .form-container input[type="date"],
 .form-container input[type="text"] {
-    width: 100%; /* Makes select span the full width of its container */
+    width: 100%;
     height: 35px;
     background: transparent;
     border: 2px solid black;
@@ -666,7 +655,6 @@ h1 {
     }
 }
 
-/* Option styles scoped within .form-container */
 .form-container option {
     background: transparent;
     border: none;
@@ -676,19 +664,17 @@ h1 {
     text-align: center;
 }
 
-/* Flexbox styling for form group inside .form-container */
 .form-container .form-group {
     display: flex;
-    flex-direction: column; /* Stack label and input/select vertically */
-    align-items: flex-start; /* Align label and input/select to the left */
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
 }
 
-/* Styling for the submit button container */
 .form-container .submit-group {
     display: flex;
-    justify-content: center; /* Centers the button horizontally */
-    grid-column: span 2; /* Make the submit button span both columns if needed */
+    justify-content: center;
+    grid-column: span 2;
 }
 
 .navbar {
@@ -701,9 +687,9 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #2c1c4e; /* Dark background */
-  padding: 10px 20px; /* Top and side padding */
-  color: #d5282a; /* Text color */
+  background-color: #2c1c4e; 
+  padding: 10px 20px;
+  color: #d5282a;
 }
 
 .navbar .logo {
@@ -727,12 +713,12 @@ h1 {
 
 .navbar .nav-buttons {
   display: flex;
-  gap: 10px; /* Space between buttons */
+  gap: 10px;
   align-items: center;
 }
 
 .navbar .nav-buttons button {
-  background-color: #d5282a; /* Button background */
+  background-color: #d5282a;
   color: rgb(255, 255, 255);
   border: none;
   padding: 10px 15px;
@@ -743,43 +729,42 @@ h1 {
 
 .navbar .user-info {
   display: flex;
-  flex-direction: column; /* Arrange content vertically */
-  align-items: center; /* Center-align the text and button */
-  gap: 5px; /* Add space between the text and button */
-  color: white; /* Ensure the text is white */
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: white;
 }
 
 .navbar .user-info span {
-  font-size: 0.9rem; /* Smaller font for "Signed in as" */
+  font-size: 0.9rem;
 }
 
 .navbar .logout-button {
-  background-color: #d5282a; /* Match role-specific button color */
+  background-color: #d5282a;
   color: rgb(255, 255, 255);
   border: none;
-  padding: 5px 10px; /* Smaller button size */
+  padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 0.8rem; /* Adjust font size for smaller button */
+  font-size: 0.8rem;
 }
 
 .navbar .logout-button:hover {
-  background-color: #6d1416; /* Darker shade on hover */
+  background-color: #6d1416;
 }
 
 .navbar .nav-buttons button:hover {
-  background-color: #6d1416; /* Darker shade on hover */
+  background-color: #6d1416;
 }
 
 .divider {
   width: 1px;
-  height: 40px; /* Adjust height as needed */
+  height: 40px;
   background-color: white;
-  margin: 0 15px; /* Space between buttons and the divider */
-  align-self: center; /* Center vertically within the navbar */
+  margin: 0 15px;
+  align-self: center;
 }
 
-/* Admin Homepage Styles */
 .admin-container {
   max-width: 1000px;
   width: 80%;
@@ -792,7 +777,6 @@ h1 {
   backdrop-filter: blur(10px);
 }
 
-/* Title */
 .admin-title {
   font-size: 2em;
   font-weight: bold;
@@ -803,14 +787,12 @@ h1 {
   font-size: 60px;
 }
 
-/* Admin content grid */
 .admin-content {
   display: flex;
   justify-content: space-between;
   gap: 20px;
 }
 
-/* Left Panel: Stats */
 .admin-left-panel {
   width: 60%;
   background: rgba(255, 255, 255, 0.5);
@@ -847,7 +829,6 @@ h1 {
   border-radius: 5px;
 }
 
-/* Right Panel: Last Sold Artwork */
 .admin-right-panel {
   width: 35%;
   background: rgba(255, 255, 255, 0.5);
@@ -872,7 +853,6 @@ h1 {
   margin-top: 10px;
 }
 
-/* Sales Report Button */
 .admin-report-btn {
   display: block;
   width: 250px;
@@ -892,7 +872,6 @@ h1 {
   background: #801819;
 }
 
-/* Quote Section */
 .admin-quote {
   margin-top: 30px;
   text-align: center;

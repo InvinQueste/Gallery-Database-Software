@@ -2,7 +2,6 @@
 session_start();
 include("connect.php");
 
-// Redirect if not logged in
 if (!isset($_SESSION['username'])) {
     header("Location: index.php");
     exit();
@@ -14,11 +13,9 @@ if ($_SESSION['username']=='admin') {
 }
 
 $username = $_SESSION['username'];
-$customerID = $_SESSION['id']; // Assuming CustomerID is stored in session
-
+$customerID = $_SESSION['id'];
 include('navbar.php');
 
-// Fetch customer details
 $query = "SELECT Username, CustomerName, TotalSpending FROM Customer WHERE CustomerID = '$customerID'";
 $result = $conn->query($query);
 
@@ -31,7 +28,6 @@ if ($result && $row = $result->fetch_assoc()) {
     exit();
 }
 
-// Calculate total cart value
 $totalCartValue = 0;
 if (!empty($_SESSION['cart'])) {
     $cartIDs = implode(',', array_map('intval', $_SESSION['cart']));
@@ -43,7 +39,6 @@ if (!empty($_SESSION['cart'])) {
     }
 }
 
-// Fetch most expensive item ever bought
 $expensiveQuery = "
     SELECT A.ArtworkID, A.Title, A.Price 
     FROM Buys B
@@ -54,7 +49,6 @@ $expensiveQuery = "
 $expensiveResult = $conn->query($expensiveQuery);
 $expensiveItem = $expensiveResult->fetch_assoc();
 
-// Fetch preferred artists (sorted by priority)
 $artistsQuery = "SELECT Artist.ArtistName 
                  FROM PrefersArtist 
                  JOIN Artist ON PrefersArtist.ArtistID = Artist.ArtistID 
@@ -66,7 +60,6 @@ while ($row = $artistsResult->fetch_assoc()) {
     $preferredArtists[] = $row['ArtistName'];
 }
 
-// Fetch preferred art groups (sorted by priority)
 $groupsQuery = "SELECT ArtGroup.GroupName 
                 FROM PrefersGroup 
                 JOIN ArtGroup ON PrefersGroup.GroupID = ArtGroup.GroupID 
@@ -78,7 +71,6 @@ while ($row = $groupsResult->fetch_assoc()) {
     $preferredGroups[] = $row['GroupName'];
 }
 
-// Get a random quote from the file
 $quotes = file("quotes.txt", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 $randomQuote = $quotes[array_rand($quotes)];
 ?>
@@ -98,7 +90,6 @@ $randomQuote = $quotes[array_rand($quotes)];
     <h1 class="home-title">Welcome, <?php echo htmlspecialchars($customerName); ?>!</h1>
 
     <div class="home-content">
-        <!-- Left Panel -->
         <div class="home-left-panel">
             <p><strong>Username:</strong> <?php echo htmlspecialchars($customerUsername); ?></p>
             <p><strong>Total Spending:</strong> $<?php echo number_format($totalSpending, 2); ?></p>
@@ -135,7 +126,6 @@ $randomQuote = $quotes[array_rand($quotes)];
             <?php endif; ?>
         </div>
 
-        <!-- Right Panel -->
         <div class="home-right-panel">
             <?php if ($expensiveItem): ?>
                 <h2>Your Most Expensive Purchase</h2>
@@ -148,7 +138,6 @@ $randomQuote = $quotes[array_rand($quotes)];
         </div>
     </div>
 
-    <!-- Centered Logout Button -->
     <form action="logout.php" method="post" class="home-logout-form">
         <button type="submit" class="home-logout-btn">Logout</button>
     </form>
