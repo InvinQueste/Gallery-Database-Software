@@ -440,12 +440,14 @@ h1 {
   align-items: center; /* Center everything */
   text-align: center; /* Center text */
   justify-content: space-between;
+  margin: 0px 18px 0px 24px;
 }
 
 .home-right-panel {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0px 24px 0px 18px;
 }
 
 /* Buttons */
