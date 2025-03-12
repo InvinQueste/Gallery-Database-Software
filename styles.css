@@ -624,8 +624,8 @@ h1 {
 }
 
 .navbar .nav-buttons button {
-  background-color: #38ffb9; /* Button background */
-  color: rgb(20, 44, 0);
+  background-color: #d5282a; /* Button background */
+  color: rgb(255, 255, 255);
   border: none;
   padding: 10px 15px;
   border-radius: 5px;
@@ -646,8 +646,8 @@ h1 {
 }
 
 .navbar .logout-button {
-  background-color: #38ffb9; /* Match role-specific button color */
-  color: rgb(20, 44, 0);
+  background-color: #d5282a; /* Match role-specific button color */
+  color: rgb(255, 255, 255);
   border: none;
   padding: 5px 10px; /* Smaller button size */
   border-radius: 5px;
@@ -656,11 +656,11 @@ h1 {
 }
 
 .navbar .logout-button:hover {
-  background-color: #35520d; /* Darker shade on hover */
+  background-color: #6d1416; /* Darker shade on hover */
 }
 
 .navbar .nav-buttons button:hover {
-  background-color: #35520d; /* Darker shade on hover */
+  background-color: #6d1416; /* Darker shade on hover */
 }
 
 .divider {
