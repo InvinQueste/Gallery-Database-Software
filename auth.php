@@ -23,6 +23,9 @@ if (isset($_POST['signIn'])) {
     }
     elseif ($loginType === 'admin') {
         if ($email === 'admin' && $password === 'adminpass') {
+            session_start();
+            $_SESSION['username'] = 'admin';
+            $_SESSION['id'] = 1;
             header("Location: homepage.php");
             exit();
         } else {  
