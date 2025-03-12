@@ -67,7 +67,7 @@ $result = $conn->query($sql);
 </head>
 <body>
     <div class="container">
-        <h1>Collection</h1>
+        <h1 class="home-title">Collection</h1>
         <form method="GET" action="" class="search-bar">
             <input type="text" name="search" placeholder="Search products..." value="<?php echo htmlspecialchars($searchQuery); ?>">
             <button type="submit">Search</button>

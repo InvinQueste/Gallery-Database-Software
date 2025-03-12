@@ -264,14 +264,14 @@ tr {
 }
 
 .container {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
   border-radius: 15px;
   padding: 20px;
   width: 80%;
   max-width: 1200px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 40px;
+  margin: 120px 40px 40px 40px;
 }
 
 h1 {
@@ -328,12 +328,12 @@ h1 {
 }
 
 .product {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
   border-radius: 10px;
   padding: 15px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -399,7 +399,7 @@ h1 {
 
 .home-container {
   width: 60%;
-  margin: auto;
+  margin: 120px auto;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   padding: 20px;
@@ -496,6 +496,88 @@ h1 {
 .home-quote {
   font-style: italic;
   margin-top: 20px;
+}
+
+.cart-body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    text-align: center;
+}
+
+.cart-heading {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cart-logout {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.cart-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.cart-empty-message {
+    font-size: 18px;
+    color: #555;
+    padding: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 20px auto;
+    max-width: 400px;
+    text-align: center;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.cart-table th, .cart-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.cart-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.cart-button {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.cart-buy {
+    background-color: #28a745;
+    color: white;
+}
+
+.cart-remove {
+    background-color: #dc3545;
+    color: white;
+}
+
+.cart-buy-all, .cart-clear-all {
+    background-color: #007bff;
+    color: white;
+}
+
+.cart-button:hover {
+    opacity: 0.8;
 }
 
 .navbar {
