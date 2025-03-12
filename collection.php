@@ -8,6 +8,8 @@ if (!isset($_SESSION['id'])) {
 }
 $customerID = intval($_SESSION['id']);
 
+include('navbar.php');
+
 // Search logic
 $searchQuery = "";
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['search'])) {

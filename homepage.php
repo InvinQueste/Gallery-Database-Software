@@ -11,6 +11,8 @@ if (!isset($_SESSION['username'])) {
 $username = $_SESSION['username'];
 $customerID = $_SESSION['id']; // Assuming CustomerID is stored in session
 
+include('navbar.php');
+
 // Fetch customer details
 $query = "SELECT Username, CustomerName, TotalSpending FROM Customer WHERE CustomerID = '$customerID'";
 $result = $conn->query($query);
