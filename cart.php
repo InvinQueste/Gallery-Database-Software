@@ -6,6 +6,12 @@ if (!isset($_SESSION['username'])) {
     header("Location: index.php");
     exit();
 }
+
+if ($_SESSION['username']=='admin') {
+    header("Location: adminhome.php");
+    exit();
+}
+
 include('navbar.php');
 
 if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
