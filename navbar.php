@@ -22,7 +22,7 @@ $username = $_SESSION['username'] ?? "";
             </a>
         <?php endif; ?>
         <?php if ($username === "admin"): ?>
-            <a href="collection.php">
+            <a href="report.php">
                 <button>View Report</button>
             </a>
         <?php endif; ?>

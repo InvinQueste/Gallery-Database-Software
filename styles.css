@@ -776,3 +776,127 @@ h1 {
   margin: 0 15px; /* Space between buttons and the divider */
   align-self: center; /* Center vertically within the navbar */
 }
+
+/* Admin Homepage Styles */
+.admin-container {
+  max-width: 1000px;
+  width: 80%;
+  margin: 40px auto;
+  margin-top: 50px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.334);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Title */
+.admin-title {
+  font-size: 2em;
+  font-weight: bold;
+  color: #640c0c;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: "Comforter";
+  font-size: 60px;
+}
+
+/* Admin content grid */
+.admin-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Left Panel: Stats */
+.admin-left-panel {
+  width: 60%;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.admin-stats h2 {
+  font-size: 1.5em;
+  color: #222;
+  border-bottom: 2px solid #444;
+  padding-bottom: 5px;
+  margin-top: 20px;
+}
+
+.admin-stats p {
+  font-size: 1.2em;
+  color: #555;
+  margin: 10px 0;
+}
+
+.admin-stats ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.admin-stats li {
+  font-size: 1.1em;
+  color: #444;
+  background: #e9ecef;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+/* Right Panel: Last Sold Artwork */
+.admin-right-panel {
+  width: 35%;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.admin-artwork-image {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  margin-top: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.admin-right-panel p {
+  font-size: 1.1em;
+  color: #333;
+  margin-top: 10px;
+}
+
+/* Sales Report Button */
+.admin-report-btn {
+  display: block;
+  width: 250px;
+  padding: 12px;
+  margin: 30px auto;
+  font-size: 1.2em;
+  color: #fff;
+  background: #d5282a;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.admin-report-btn:hover {
+  background: #801819;
+}
+
+/* Quote Section */
+.admin-quote {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 1.2em;
+  font-style: italic;
+  color: #444;
+  padding-top: 15px;
+  border-top: 2px solid #ccc;
+}

@@ -8,6 +8,11 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
+if ($_SESSION['username']=='admin') {
+    header("Location: adminhome.php");
+    exit();
+}
+
 $username = $_SESSION['username'];
 $customerID = $_SESSION['id']; // Assuming CustomerID is stored in session
 
